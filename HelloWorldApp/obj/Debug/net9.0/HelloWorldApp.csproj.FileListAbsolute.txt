@@ -23,3 +23,4 @@ C:\Users\kacpe\Desktop\magisterka\II semester\PUCH\lab1\repo\HelloWorldApp\obj\D
 C:\Users\kacpe\Desktop\magisterka\II semester\PUCH\lab1\repo\HelloWorldApp\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\Users\kacpe\Desktop\magisterka\II semester\PUCH\lab1\repo\HelloWorldApp\obj\Debug\net9.0\staticwebassets.development.json
 C:\Users\kacpe\Desktop\magisterka\II semester\PUCH\lab1\repo\HelloWorldApp\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+C:\Users\kacpe\Desktop\magisterka\II semester\PUCH\lab1\repo\HelloWorldApp\obj\Debug\net9.0\HelloWorldApp.sourcelink.json
