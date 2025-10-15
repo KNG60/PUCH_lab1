@@ -8,19 +8,19 @@
     "net9.0": []
   },
   "packageFolders": {
-    "C:\\Users\\kacpe\\.nuget\\packages\\": {}
+    "/home/runner/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kacpe\\Desktop\\magisterka\\II semester\\PUCH\\lab1\\repo\\HelloWorldApp\\HelloWorldApp.csproj",
+      "projectUniqueName": "/home/runner/work/PUCH_lab1/PUCH_lab1/HelloWorldApp/HelloWorldApp.csproj",
       "projectName": "HelloWorldApp",
-      "projectPath": "C:\\Users\\kacpe\\Desktop\\magisterka\\II semester\\PUCH\\lab1\\repo\\HelloWorldApp\\HelloWorldApp.csproj",
-      "packagesPath": "C:\\Users\\kacpe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kacpe\\Desktop\\magisterka\\II semester\\PUCH\\lab1\\repo\\HelloWorldApp\\obj\\",
+      "projectPath": "/home/runner/work/PUCH_lab1/PUCH_lab1/HelloWorldApp/HelloWorldApp.csproj",
+      "packagesPath": "/home/runner/.nuget/packages/",
+      "outputPath": "/home/runner/work/PUCH_lab1/PUCH_lab1/HelloWorldApp/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\kacpe\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/home/runner/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -68,7 +68,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
