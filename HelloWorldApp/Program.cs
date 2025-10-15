@@ -22,8 +22,6 @@ app.MapGet("/", () => Results.Ok(new { message = "Hello from HelloWorldApp API" 
 
 app.MapGet("/api/hello", () => Results.Ok("Hello API user!"));
 
-// Empty endpoint that returns 204 No Content
-app.MapGet("/api/empty", () => Results.NoContent());
 
 // .NET/runtime/spec information endpoint
 app.MapGet("/api/spec", () =>
