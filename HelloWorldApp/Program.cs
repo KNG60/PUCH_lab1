@@ -192,6 +192,303 @@ app.MapDelete("/api/users/{id:int}", (int id) =>
 	return Results.NoContent();
 });
 
+// Login page with skeleton loading
+app.MapGet("/login", () => Results.Content(@"<!doctype html>
+<html>
+	<head>
+		<meta charset='utf-8'/>
+		<title>Login</title>
+		<style>
+			body {
+				font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				min-height: 100vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin: 0;
+				padding: 20px;
+			}
+			.container {
+				background: white;
+				border-radius: 12px;
+				box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+				padding: 40px;
+				max-width: 400px;
+				width: 100%;
+			}
+			h1 {
+				color: #333;
+				margin-top: 0;
+				margin-bottom: 30px;
+				text-align: center;
+				font-size: 28px;
+			}
+			label {
+				display: block;
+				margin-bottom: 8px;
+				color: #555;
+				font-weight: 500;
+			}
+			input {
+				width: 100%;
+				padding: 12px;
+				border: 2px solid #e0e0e0;
+				border-radius: 6px;
+				font-size: 16px;
+				margin-bottom: 20px;
+				box-sizing: border-box;
+				transition: border-color 0.3s;
+			}
+			input:focus {
+				outline: none;
+				border-color: #667eea;
+			}
+			button {
+				width: 100%;
+				padding: 14px;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+				border: none;
+				border-radius: 6px;
+				font-size: 16px;
+				font-weight: 600;
+				cursor: pointer;
+				transition: transform 0.2s, box-shadow 0.2s;
+			}
+			button:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+			}
+			button:active {
+				transform: translateY(0);
+			}
+			/* Skeleton loading styles */
+			.skeleton {
+				animation: skeleton-loading 1.5s infinite ease-in-out;
+				background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+				background-size: 200% 100%;
+				border-radius: 6px;
+			}
+			@keyframes skeleton-loading {
+				0% {
+					background-position: 200% 0;
+				}
+				100% {
+					background-position: -200% 0;
+				}
+			}
+			.skeleton-title {
+				height: 32px;
+				width: 60%;
+				margin: 0 auto 30px;
+			}
+			.skeleton-label {
+				height: 18px;
+				width: 30%;
+				margin-bottom: 8px;
+			}
+			.skeleton-input {
+				height: 48px;
+				width: 100%;
+				margin-bottom: 20px;
+			}
+			.skeleton-button {
+				height: 48px;
+				width: 100%;
+			}
+			.loading-state {
+				display: none;
+			}
+			.content-state {
+				display: block;
+			}
+			.show-loading .loading-state {
+				display: block;
+			}
+			.show-loading .content-state {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class='container show-loading'>
+			<!-- Skeleton loading state -->
+			<div class='loading-state'>
+				<div class='skeleton skeleton-title'></div>
+				<div class='skeleton skeleton-label'></div>
+				<div class='skeleton skeleton-input'></div>
+				<div class='skeleton skeleton-label'></div>
+				<div class='skeleton skeleton-input'></div>
+				<div class='skeleton skeleton-button'></div>
+			</div>
+			
+			<!-- Actual content -->
+			<div class='content-state'>
+				<h1>Login</h1>
+				<form method='post' action='/login'>
+					<label>Username:</label>
+					<input type='text' name='username' required autocomplete='username'/>
+					
+					<label>Password:</label>
+					<input type='password' name='password' required autocomplete='current-password'/>
+					
+					<button type='submit'>Sign In</button>
+				</form>
+			</div>
+		</div>
+		
+		<script>
+			// Simulate loading - remove skeleton after a short delay
+			window.addEventListener('DOMContentLoaded', function() {
+				setTimeout(function() {
+					document.querySelector('.container').classList.remove('show-loading');
+				}, 800);
+			});
+		</script>
+	</body>
+</html>", "text/html"));
+
+// Handle login submission
+app.MapPost("/login", async (HttpContext http) =>
+{
+	if (http.Request.HasFormContentType)
+	{
+		var form = await http.Request.ReadFormAsync();
+		var username = form["username"].ToString();
+		var password = form["password"].ToString();
+		
+		// Simple validation - check if user exists
+		var user = users.FirstOrDefault(u => string.Equals(u.Username, username, StringComparison.OrdinalIgnoreCase));
+		
+		if (user is not null)
+		{
+			// Successful login
+			return Results.Content($@"<!doctype html>
+<html>
+	<head>
+		<meta charset='utf-8'/>
+		<title>Login Success</title>
+		<style>
+			body {{
+				font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				min-height: 100vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin: 0;
+				padding: 20px;
+			}}
+			.container {{
+				background: white;
+				border-radius: 12px;
+				box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+				padding: 40px;
+				max-width: 400px;
+				width: 100%;
+				text-align: center;
+			}}
+			h1 {{
+				color: #28a745;
+				margin-top: 0;
+			}}
+			p {{
+				color: #555;
+				font-size: 16px;
+				margin: 20px 0;
+			}}
+			a {{
+				display: inline-block;
+				padding: 12px 24px;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+				text-decoration: none;
+				border-radius: 6px;
+				margin-top: 10px;
+				transition: transform 0.2s;
+			}}
+			a:hover {{
+				transform: translateY(-2px);
+			}}
+		</style>
+	</head>
+	<body>
+		<div class='container'>
+			<h1>✓ Welcome, {System.Net.WebUtility.HtmlEncode(user.Username)}!</h1>
+			<p>You have successfully logged in.</p>
+			<p><strong>Email:</strong> {System.Net.WebUtility.HtmlEncode(user.Email ?? "N/A")}</p>
+			<a href='/login'>Back to Login</a>
+		</div>
+	</body>
+</html>", "text/html");
+		}
+		else
+		{
+			// Failed login
+			return Results.Content(@"<!doctype html>
+<html>
+	<head>
+		<meta charset='utf-8'/>
+		<title>Login Failed</title>
+		<style>
+			body {
+				font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				min-height: 100vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin: 0;
+				padding: 20px;
+			}
+			.container {
+				background: white;
+				border-radius: 12px;
+				box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+				padding: 40px;
+				max-width: 400px;
+				width: 100%;
+				text-align: center;
+			}
+			h1 {
+				color: #dc3545;
+				margin-top: 0;
+			}
+			p {
+				color: #555;
+				font-size: 16px;
+				margin: 20px 0;
+			}
+			a {
+				display: inline-block;
+				padding: 12px 24px;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+				text-decoration: none;
+				border-radius: 6px;
+				margin-top: 10px;
+				transition: transform 0.2s;
+			}
+			a:hover {
+				transform: translateY(-2px);
+			}
+		</style>
+	</head>
+	<body>
+		<div class='container'>
+			<h1>✗ Login Failed</h1>
+			<p>Username not found. Please try again.</p>
+			<a href='/login'>Back to Login</a>
+		</div>
+	</body>
+</html>", "text/html");
+		}
+	}
+	
+	return Results.BadRequest(new { error = "Invalid request format" });
+});
+
 app.Run();
 
 internal record Item
