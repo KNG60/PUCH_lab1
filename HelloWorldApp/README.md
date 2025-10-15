@@ -36,6 +36,8 @@ Domyślnie aplikacja nasłuchuje na adresach wypisanych w konsoli (np. http://lo
 - GET `/contact` — formularz kontaktowy (HTML)
 - POST `/contact` — przyjmuje formularz (application/x-www-form-urlencoded) lub JSON
 - GET `/api/contacts` — lista zgłoszeń kontaktowych (in-memory)
+- GET `/login` — strona logowania z animacją skeleton loading (HTML)
+- POST `/login` — obsługa logowania (sprawdza czy użytkownik istnieje)
 
 ## Przykładowe polecenia (curl)
 
@@ -52,6 +54,10 @@ curl -X POST http://localhost:5000/contact -H "Content-Type: application/json" -
 ```
 
 Odwiedź formularz w przeglądarce: `http://localhost:5000/contact`
+
+Testowanie logowania (użyj istniejącego użytkownika, np. "alice" lub "bob"):
+
+Odwiedź stronę logowania w przeglądarce: `http://localhost:5000/login`
 
 ## Uwagi
 
