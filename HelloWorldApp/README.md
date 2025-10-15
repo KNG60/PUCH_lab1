@@ -36,6 +36,7 @@ Domyślnie aplikacja nasłuchuje na adresach wypisanych w konsoli (np. http://lo
 ### Podstawowe
 - GET `/` — JSON z wiadomością powitalną
 - GET `/api/hello` — prosty tekst powitalny
+- GET `/api/empty` — pusty endpoint (zwraca 204 No Content)
 - GET `/api/spec` — informacje o środowisku uruchomieniowym (.NET, OS)
 
 ### Zarządzanie elementami (Items)

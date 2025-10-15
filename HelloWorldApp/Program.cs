@@ -22,6 +22,7 @@ app.MapGet("/", () => Results.Ok(new { message = "Hello from HelloWorldApp API" 
 
 app.MapGet("/api/hello", () => Results.Ok("Hello API user!"));
 
+
 // .NET/runtime/spec information endpoint
 app.MapGet("/api/spec", () =>
 {
